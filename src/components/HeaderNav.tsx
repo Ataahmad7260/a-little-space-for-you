@@ -54,16 +54,16 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onRestart }) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 px-4 py-3 sm:py-4 pointer-events-none transition-all duration-300">
-      <div className="max-w-5xl mx-auto flex items-center justify-between pointer-events-auto">
+    <header className="fixed top-0 left-0 right-0 z-40 px-4 py-3 sm:py-5 pointer-events-none transition-all duration-300">
+      <div className="max-w-6xl mx-auto flex items-center justify-between pointer-events-auto">
         {/* Brand / Title */}
         <button
           onClick={() => scrollTo('hero')}
-          className="group flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel hover:border-[#E8B4C8]/40 transition-all text-left"
+          className="group flex items-center gap-2.5 px-4 py-2 rounded-full glass-panel-gold hover:border-[#F2B8CD]/60 transition-all text-left shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-pointer"
           title="Return to beginning"
         >
-          <span className="w-2 h-2 rounded-full bg-[#FFE8A3] shadow-[0_0_8px_#FFE8A3] animate-pulse" />
-          <span className="font-serif-poetry text-base sm:text-lg text-[#F5F0FF] group-hover:text-[#E8B4C8] transition-colors">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#FFE3A8] shadow-[0_0_10px_#FFE3A8] animate-pulse" />
+          <span className="font-serif-poetry text-base sm:text-xl text-[#FAF8FF] group-hover:text-[#FFE3A8] transition-colors">
             {content.siteConfig.title}
           </span>
         </button>
@@ -73,24 +73,24 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onRestart }) => {
           {/* Quick jump menu for larger screens */}
           <nav
             aria-label="Section navigation"
-            className={`hidden md:flex items-center gap-1 px-3 py-1 rounded-full glass-panel transition-all ${
-              scrolled ? 'opacity-100' : 'opacity-80 hover:opacity-100'
+            className={`hidden md:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full glass-panel transition-all ${
+              scrolled ? 'opacity-100 shadow-[0_4px_25px_rgba(0,0,0,0.6)]' : 'opacity-85 hover:opacity-100'
             }`}
           >
             {[
-              { id: 'hero', label: 'Beginning' },
+              { id: 'hero', label: 'The Beginning' },
               { id: 'poetry', label: 'Poetry' },
               { id: 'surprises', label: 'Surprises' },
               { id: 'memories', label: 'Memories' },
-              { id: 'final', label: 'Before Leaving' },
+              { id: 'final', label: 'Before You Leave' },
             ].map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
+                className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all cursor-pointer ${
                   activeSection === item.id
-                    ? 'bg-[#B8A9CD]/25 text-[#FFE8A3] shadow-[0_0_12px_rgba(184,169,205,0.3)]'
-                    : 'text-[#F5F0FF]/70 hover:text-[#F5F0FF] hover:bg-white/5'
+                    ? 'bg-[#FFE3A8]/20 text-[#FFE3A8] border border-[#FFE3A8]/40 shadow-[0_0_15px_rgba(255,227,168,0.25)]'
+                    : 'text-[#C8B6E2]/80 hover:text-[#FAF8FF] hover:bg-white/5'
                 }`}
               >
                 {item.label}
@@ -103,28 +103,28 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onRestart }) => {
             onClick={handleToggleMusic}
             aria-label={isPlayingMusic ? 'Mute ambient piano music' : 'Play ambient piano music'}
             aria-pressed={isPlayingMusic}
-            className={`flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full glass-panel transition-all duration-300 ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 sm:px-4.5 sm:py-2 rounded-full glass-panel-gold transition-all duration-300 cursor-pointer ${
               isPlayingMusic
-                ? 'border-[#FFE8A3]/50 shadow-[0_0_20px_rgba(255,232,163,0.25)] text-[#FFE8A3]'
-                : 'text-[#B8A9CD] hover:text-[#F5F0FF] hover:border-[#B8A9CD]/40'
+                ? 'border-[#FFE3A8]/60 shadow-[0_0_25px_rgba(255,227,168,0.35)] text-[#FFE3A8]'
+                : 'text-[#C8B6E2] hover:text-[#FAF8FF] hover:border-[#FFE3A8]/40'
             }`}
             title={isPlayingMusic ? 'Pause ambient piano music' : 'Play relaxing ambient piano music (Gentle & Calming)'}
           >
             {isPlayingMusic ? (
               <>
-                <Volume2 className="w-4 h-4 animate-pulse text-[#FFE8A3]" />
+                <Volume2 className="w-4 h-4 animate-pulse text-[#FFE3A8]" />
                 {/* Visual soundwave bars */}
-                <div className="flex items-end gap-[2px] h-3">
-                  <span className="w-[2px] h-2 bg-[#FFE8A3] animate-bounce" style={{ animationDelay: '0ms' }} />
-                  <span className="w-[2px] h-3 bg-[#FFE8A3] animate-bounce" style={{ animationDelay: '150ms' }} />
-                  <span className="w-[2px] h-1.5 bg-[#FFE8A3] animate-bounce" style={{ animationDelay: '300ms' }} />
+                <div className="flex items-end gap-[2px] h-3.5">
+                  <span className="w-[2px] h-2 bg-[#FFE3A8] animate-bounce" style={{ animationDelay: '0ms' }} />
+                  <span className="w-[2px] h-3.5 bg-[#FFE3A8] animate-bounce" style={{ animationDelay: '150ms' }} />
+                  <span className="w-[2px] h-2 bg-[#FFE3A8] animate-bounce" style={{ animationDelay: '300ms' }} />
                 </div>
-                <span className="hidden sm:inline text-xs font-medium">Piano On</span>
+                <span className="hidden sm:inline text-xs font-medium tracking-wide">Piano On</span>
               </>
             ) : (
               <>
                 <VolumeX className="w-4 h-4 opacity-75" />
-                <span className="hidden sm:inline text-xs font-medium">Piano Off</span>
+                <span className="hidden sm:inline text-xs font-medium tracking-wide">Piano Off</span>
               </>
             )}
           </button>

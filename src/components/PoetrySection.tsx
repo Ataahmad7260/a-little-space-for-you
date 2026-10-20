@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Heart, Copy, Check, Bookmark, Feather, RotateCcw } from 'lucide-react';
+import { Sparkles, Heart, Copy, Check, Feather, RotateCcw, Compass, Moon, Flower2 } from 'lucide-react';
 import { content, type Poem } from '../data/content';
 import { triggerCelestialBurst } from '../utils/burstEffect';
 import { sfx } from '../utils/soundEffects';
+
+const emblemList = [Compass, Moon, Sparkles, Flower2];
 
 export const PoetrySection: React.FC = () => {
   const { sectionTitle, sectionSubtitle, poems } = content.poetrySection;
@@ -44,17 +46,17 @@ export const PoetrySection: React.FC = () => {
   };
 
   return (
-    <section id="poetry" className="relative py-24 px-4 sm:px-6 max-w-6xl mx-auto">
-      {/* Section Header */}
-      <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
+    <section id="poetry" className="relative py-28 px-4 sm:px-6 max-w-6xl mx-auto">
+      {/* SECTION HEADER */}
+      <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-22">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B8A9CD]/10 text-xs tracking-wider uppercase text-[#B8A9CD] mb-4 border border-[#B8A9CD]/20"
+          className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#C8B6E2]/10 text-xs tracking-widest uppercase text-[#FFE3A8] mb-4 border border-[#FFE3A8]/25 shadow-[0_0_15px_rgba(255,227,168,0.12)]"
         >
-          <Feather className="w-3.5 h-3.5 text-[#FFE8A3]" />
-          <span>Chapter I • Poetry</span>
+          <Feather className="w-3.5 h-3.5 text-[#FFE3A8]" />
+          <span>Chapter I • Whispers of the Heart</span>
         </motion.div>
 
         <motion.h2
@@ -62,7 +64,7 @@ export const PoetrySection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="font-serif-poetry text-3xl sm:text-4xl md:text-5xl text-[#F5F0FF] mb-4 font-normal glow-text-subtle"
+          className="font-serif-poetry text-4xl sm:text-5xl md:text-6xl text-[#FAF8FF] mb-4 font-normal glow-text-subtle"
         >
           {sectionTitle}
         </motion.h2>
@@ -72,85 +74,97 @@ export const PoetrySection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-sm sm:text-base text-[#B8A9CD]/80 font-light leading-relaxed"
+          className="text-sm sm:text-base text-[#C8B6E2]/85 font-light leading-relaxed"
         >
           {sectionSubtitle}
         </motion.p>
       </div>
 
-      {/* 4 Interactive Poetry Cards */}
+      {/* 4 LUXURY INTERACTIVE POETRY CARDS */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
         {poems.map((poem, index) => {
           const isFlipped = !!flippedCards[poem.id];
           const isCherished = !!cherishedMap[poem.id];
+          const EmblemIcon = emblemList[index % emblemList.length] || Sparkles;
 
           return (
             <motion.div
               key={poem.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 35 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.7, delay: index * 0.15 }}
-              className="relative perspective-1000 group min-h-[380px] sm:min-h-[420px]"
+              transition={{ duration: 0.8, delay: index * 0.15 }}
+              className="relative perspective-1000 group min-h-[420px] sm:min-h-[460px]"
             >
               {/* Outer Card Wrapper with 3D Flip */}
               <div
                 onClick={() => toggleFlip(poem.id)}
-                className={`w-full h-full cursor-pointer relative transition-transform duration-700 [transform-style:preserve-3d] rounded-2xl ${
+                className={`w-full h-full cursor-pointer relative transition-transform duration-700 [transform-style:preserve-3d] rounded-3xl ${
                   isFlipped ? '[transform:rotateY(180deg)]' : ''
                 }`}
               >
-                {/* FRONT FACE */}
-                <div className="absolute inset-0 [backface-visibility:hidden] glass-panel rounded-2xl p-6 sm:p-8 flex flex-col justify-between border border-[#B8A9CD]/20 hover:border-[#E8B4C8]/40 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(184,169,205,0.18)]">
+                {/* FRONT FACE (LUXURY CELESTIAL CARD) */}
+                <div className="absolute inset-0 [backface-visibility:hidden] glass-panel-gold rounded-3xl p-7 sm:p-9 flex flex-col justify-between border border-[#FFE3A8]/25 hover:border-[#F2B8CD]/50 transition-all duration-400 hover:shadow-[0_20px_50px_rgba(242,184,205,0.22)]">
+                  {/* Subtle Inner Corner Accents */}
+                  <div className="absolute top-3 left-3 w-3 h-3 border-t border-l border-[#FFE3A8]/40" />
+                  <div className="absolute top-3 right-3 w-3 h-3 border-t border-r border-[#FFE3A8]/40" />
+                  <div className="absolute bottom-3 left-3 w-3 h-3 border-b border-l border-[#FFE3A8]/40" />
+                  <div className="absolute bottom-3 right-3 w-3 h-3 border-b border-r border-[#FFE3A8]/40" />
+
                   {/* Top Bar */}
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-medium tracking-wide bg-white/5 border border-white/10 text-[#FFE8A3]">
+                    <span className="px-3.5 py-1 rounded-full text-xs font-medium tracking-wider uppercase bg-white/5 border border-white/10 text-[#FFE3A8]">
                       {poem.tag}
                     </span>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-[#B8A9CD]/60 font-mono">0{index + 1}</span>
-                      <Sparkles className="w-4 h-4 text-[#B8A9CD]/60 group-hover:text-[#FFE8A3] transition-colors" />
+                      <span className="text-xs text-[#C8B6E2]/70 font-mono tracking-widest">NO. 0{index + 1}</span>
+                      <Sparkles className="w-4 h-4 text-[#FFE3A8] group-hover:scale-125 transition-transform" />
                     </div>
                   </div>
 
-                  {/* Middle: Title & Subtle Preview */}
+                  {/* Middle: Emblem & Title */}
                   <div className="my-auto py-6 text-center">
-                    <h3 className="font-serif-poetry text-2xl sm:text-3xl text-[#F5F0FF] mb-2 font-normal group-hover:text-[#E8B4C8] transition-colors">
+                    {/* Glowing Celestial Emblem */}
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#9B86BD]/20 to-[#FFE3A8]/20 border border-[#FFE3A8]/30 flex items-center justify-center mx-auto mb-5 shadow-[0_0_20px_rgba(255,227,168,0.18)] group-hover:border-[#F2B8CD] group-hover:shadow-[0_0_25px_rgba(242,184,205,0.35)] transition-all">
+                      <EmblemIcon className="w-6 h-6 text-[#FFE3A8] group-hover:text-[#F2B8CD] transition-colors" />
+                    </div>
+
+                    <h3 className="font-serif-poetry text-3xl sm:text-4xl text-[#FAF8FF] mb-2 font-normal group-hover:text-[#F2B8CD] transition-colors">
                       {poem.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-[#B8A9CD]/70 italic font-light mb-6">
+                    <p className="text-xs sm:text-sm text-[#C8B6E2]/80 italic font-light mb-6 tracking-wide">
                       {poem.subtitle}
                     </p>
 
-                    <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#E8B4C8]/50 to-transparent mx-auto mb-6" />
+                    <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[#FFE3A8]/60 to-transparent mx-auto mb-6" />
 
-                    <p className="text-sm font-serif-poetry text-[#F5F0FF]/60 italic">
+                    <p className="font-cursive text-2xl sm:text-3xl text-[#FFE3A8]/90">
                       "{poem.lines[0]}"
                     </p>
                   </div>
 
                   {/* Bottom: Unfold Prompt */}
-                  <div className="flex items-center justify-between pt-4 border-t border-white/5 text-xs text-[#B8A9CD]/80">
-                    <span className="inline-flex items-center gap-1.5 group-hover:text-[#FFE8A3] transition-colors">
-                      <Bookmark className="w-3.5 h-3.5 text-[#E8B4C8]" />
-                      Click card to unfold poem
+                  <div className="flex items-center justify-between pt-4 border-t border-white/10 text-xs text-[#C8B6E2]/80">
+                    <span className="inline-flex items-center gap-2 group-hover:text-[#FFE3A8] transition-colors">
+                      <Sparkles className="w-3.5 h-3.5 text-[#F2B8CD]" />
+                      Touch card to unfold poetry
                     </span>
-                    <span className="text-[11px] uppercase tracking-wider text-[#B8A9CD]/50">
-                      Turn over ↻
+                    <span className="text-[11px] uppercase tracking-wider text-[#FFE3A8]/70 flex items-center gap-1 font-mono">
+                      Reveal ↻
                     </span>
                   </div>
                 </div>
 
-                {/* BACK FACE (REVEALED POETRY) */}
-                <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] glass-panel-glow rounded-2xl p-6 sm:p-8 flex flex-col justify-between border border-[#E8B4C8]/30">
+                {/* BACK FACE (REVEALED POETRY ON PARCHMENT-STYLE GLASS) */}
+                <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] glass-panel-glow rounded-3xl p-7 sm:p-9 flex flex-col justify-between border border-[#F2B8CD]/40 shadow-[0_20px_60px_rgba(0,0,0,0.85)]">
                   {/* Top Bar on revealed side */}
                   <div className="flex items-center justify-between">
-                    <span className="font-serif-poetry text-lg text-[#FFE8A3] tracking-wide">
+                    <span className="font-serif-poetry text-xl text-[#FFE3A8] tracking-wide">
                       {poem.title}
                     </span>
                     <button
                       onClick={(e) => toggleFlip(poem.id, e)}
-                      className="p-1.5 rounded-full hover:bg-white/10 text-[#B8A9CD] hover:text-[#F5F0FF] transition-colors"
+                      className="p-1.5 rounded-full hover:bg-white/10 text-[#C8B6E2] hover:text-[#FAF8FF] transition-colors"
                       title="Flip back"
                     >
                       <RotateCcw className="w-4 h-4" />
@@ -159,25 +173,27 @@ export const PoetrySection: React.FC = () => {
 
                   {/* Complete Poem Stanzas */}
                   <div className="my-auto py-4 text-center">
-                    <div className="space-y-2.5 sm:space-y-3 font-serif-poetry text-lg sm:text-xl text-[#F5F0FF] leading-relaxed tracking-wide">
+                    <div className="space-y-3 sm:space-y-3.5 font-serif-poetry text-xl sm:text-2xl text-[#FAF8FF] leading-relaxed tracking-wide">
                       {poem.lines.map((line, lIdx) => (
-                        <p key={lIdx} className="hover:text-[#FFE8A3] transition-colors">
+                        <p key={lIdx} className="hover:text-[#FFE3A8] transition-colors">
                           {line}
                         </p>
                       ))}
                     </div>
 
                     {/* Meaning Note */}
-                    <p className="mt-5 text-xs text-[#B8A9CD]/75 font-light italic max-w-sm mx-auto leading-relaxed border-t border-white/10 pt-3">
-                      {poem.meaning}
-                    </p>
+                    <div className="mt-6 pt-4 border-t border-white/10 max-w-sm mx-auto">
+                      <p className="text-xs text-[#C8B6E2]/85 font-light italic leading-relaxed">
+                        {poem.meaning}
+                      </p>
+                    </div>
                   </div>
 
                   {/* Action Bar: Copy & Cherish */}
-                  <div className="flex items-center justify-between pt-3 border-t border-white/10">
+                  <div className="flex items-center justify-between pt-4 border-t border-white/10">
                     <button
                       onClick={(e) => handleCopy(poem, e)}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs text-[#B8A9CD] hover:text-[#F5F0FF] transition-all"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-xs text-[#C8B6E2] hover:text-[#FAF8FF] transition-all border border-white/10"
                       title="Copy poem to clipboard"
                     >
                       {copiedId === poem.id ? (
@@ -188,23 +204,23 @@ export const PoetrySection: React.FC = () => {
                       ) : (
                         <>
                           <Copy className="w-3.5 h-3.5" />
-                          <span>Copy Stanza</span>
+                          <span>Copy Verse</span>
                         </>
                       )}
                     </button>
 
                     <button
                       onClick={(e) => handleCherish(poem.id, e)}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all text-xs ${
+                      className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl transition-all text-xs ${
                         isCherished
-                          ? 'bg-[#E8B4C8]/25 text-[#E8B4C8] border border-[#E8B4C8]/40 shadow-[0_0_12px_rgba(232,180,200,0.3)]'
-                          : 'bg-white/5 hover:bg-white/10 text-[#B8A9CD] hover:text-[#E8B4C8]'
+                          ? 'bg-[#F2B8CD]/30 text-[#F2B8CD] border border-[#F2B8CD]/50 shadow-[0_0_15px_rgba(242,184,205,0.4)]'
+                          : 'bg-white/5 hover:bg-white/10 text-[#C8B6E2] hover:text-[#F2B8CD] border border-white/10'
                       }`}
                       title="Cherish this poem"
                     >
                       <Heart
                         className={`w-3.5 h-3.5 ${
-                          isCherished ? 'fill-[#E8B4C8] text-[#E8B4C8]' : ''
+                          isCherished ? 'fill-[#F2B8CD] text-[#F2B8CD]' : ''
                         }`}
                       />
                       <span>{isCherished ? 'Cherished ♡' : 'Cherish'}</span>

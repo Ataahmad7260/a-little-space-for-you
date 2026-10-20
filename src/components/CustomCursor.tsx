@@ -10,8 +10,8 @@ export const CustomCursor: React.FC = () => {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // Smooth lagging spring for trailing outer glow
-  const springConfig = { damping: 28, stiffness: 350, mass: 0.5 };
+  // Smooth lagging spring for trailing outer starlight halo
+  const springConfig = { damping: 25, stiffness: 320, mass: 0.45 };
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
@@ -32,14 +32,13 @@ export const CustomCursor: React.FC = () => {
       mouseY.set(e.clientY);
       if (!isVisible) setIsVisible(true);
 
-      // Check if hovering over clickable or interactive element
       const target = e.target as HTMLElement | null;
       if (
         target &&
         (target.closest('button') ||
           target.closest('a') ||
           target.closest('[role="button"]') ||
-          target.closest('.interactive-cursor') ||
+          target.closest('.cursor-pointer') ||
           target.tagName.toLowerCase() === 'input' ||
           target.tagName.toLowerCase() === 'textarea')
       ) {
@@ -73,7 +72,7 @@ export const CustomCursor: React.FC = () => {
 
   return (
     <>
-      {/* Outer ambient glow ring */}
+      {/* Outer ambient starlight glow ring */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-50 rounded-full mix-blend-screen"
         style={{
@@ -81,11 +80,11 @@ export const CustomCursor: React.FC = () => {
           y: smoothY,
           translateX: '-50%',
           translateY: '-50%',
-          width: isHovered ? 48 : isClicking ? 24 : 34,
-          height: isHovered ? 48 : isClicking ? 24 : 34,
-          border: isHovered ? '1.5px solid rgba(232, 180, 200, 0.7)' : '1px solid rgba(184, 169, 205, 0.4)',
-          backgroundColor: isHovered ? 'rgba(232, 180, 200, 0.12)' : 'rgba(184, 169, 205, 0.05)',
-          boxShadow: isHovered ? '0 0 15px rgba(232, 180, 200, 0.4)' : '0 0 10px rgba(184, 169, 205, 0.2)',
+          width: isHovered ? 52 : isClicking ? 26 : 36,
+          height: isHovered ? 52 : isClicking ? 26 : 36,
+          border: isHovered ? '1.5px solid rgba(255, 227, 168, 0.85)' : '1px solid rgba(242, 184, 205, 0.45)',
+          backgroundColor: isHovered ? 'rgba(255, 227, 168, 0.12)' : 'rgba(200, 182, 226, 0.05)',
+          boxShadow: isHovered ? '0 0 25px rgba(255, 227, 168, 0.5)' : '0 0 15px rgba(200, 182, 226, 0.25)',
           transition: 'width 0.2s ease-out, height 0.2s ease-out, border 0.2s, background-color 0.2s',
         }}
       />
@@ -100,8 +99,8 @@ export const CustomCursor: React.FC = () => {
           translateY: '-50%',
           width: isHovered ? 8 : isClicking ? 10 : 5,
           height: isHovered ? 8 : isClicking ? 10 : 5,
-          backgroundColor: isHovered ? '#FFE8A3' : '#F5F0FF',
-          boxShadow: '0 0 8px #FFE8A3, 0 0 12px #E8B4C8',
+          backgroundColor: isHovered ? '#FFE3A8' : '#FAF8FF',
+          boxShadow: '0 0 10px #FFE3A8, 0 0 18px #F2B8CD',
           transition: 'width 0.15s ease-out, height 0.15s ease-out, background-color 0.2s',
         }}
       />

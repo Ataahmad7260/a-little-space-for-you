@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Heart, ChevronDown } from 'lucide-react';
+import { Sparkles, Heart, ChevronDown, Compass } from 'lucide-react';
 import { content } from '../data/content';
 import { triggerCelestialBurst } from '../utils/burstEffect';
 import { sfx } from '../utils/soundEffects';
@@ -45,14 +45,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExplore }) => {
           clearInterval(timer);
         }
       }
-    }, 55);
+    }, 50);
 
     return () => clearInterval(timer);
   }, [typewriterLines]);
 
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    triggerCelestialBurst((rect.left + rect.width / 2) / window.innerWidth, (rect.top + rect.height / 2) / window.innerHeight);
+    triggerCelestialBurst(
+      (rect.left + rect.width / 2) / window.innerWidth,
+      (rect.top + rect.height / 2) / window.innerHeight
+    );
     sfx.playSoftTap();
     onExplore();
   };
@@ -60,88 +63,114 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExplore }) => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-20 pb-12 select-none overflow-hidden"
+      className="relative min-h-[105vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-28 pb-16 select-none overflow-hidden"
     >
-      {/* Background ethereal light orbs */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[540px] h-[340px] sm:h-[540px] bg-gradient-to-tr from-[#B8A9CD]/10 via-[#E8B4C8]/10 to-transparent rounded-full blur-[110px] pointer-events-none" />
+      {/* CELESTIAL ORBITAL BACKGROUND ART */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] sm:w-[850px] h-[650px] sm:h-[850px] pointer-events-none">
+        {/* Soft Radial Ambient Glow */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-[#9B86BD]/15 via-[#F2B8CD]/12 to-[#FFE3A8]/10 rounded-full blur-[130px]" />
 
-      {/* Dedication Tag */}
+        {/* Outer Orbital Ring 1 */}
+        <div className="absolute inset-16 rounded-full border border-white/5 animate-spin" style={{ animationDuration: '65s' }}>
+          <div className="w-2.5 h-2.5 rounded-full bg-[#FFE3A8] shadow-[0_0_12px_#FFE3A8] -top-1.5 left-1/2 absolute" />
+        </div>
+
+        {/* Inner Orbital Ring 2 */}
+        <div className="absolute inset-36 rounded-full border border-dashed border-[#C8B6E2]/15 animate-spin" style={{ animationDuration: '45s', animationDirection: 'reverse' }}>
+          <div className="w-2 h-2 rounded-full bg-[#F2B8CD] shadow-[0_0_10px_#F2B8CD] top-1/3 -left-1 absolute" />
+        </div>
+      </div>
+
+      {/* DEDICATION BADGE */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.3 }}
-        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel text-xs sm:text-sm font-medium text-[#B8A9CD] mb-8 sm:mb-12 border border-[#B8A9CD]/20 shadow-[0_0_20px_rgba(184,169,205,0.15)]"
+        transition={{ duration: 1.1, delay: 0.2 }}
+        className="relative z-10 inline-flex items-center gap-2.5 px-5 py-2 rounded-full glass-panel-gold text-xs sm:text-sm font-medium text-[#FFE3A8] mb-8 sm:mb-12 shadow-[0_0_30px_rgba(255,227,168,0.18)]"
       >
-        <Sparkles className="w-3.5 h-3.5 text-[#FFE8A3]" />
-        <span>Dedicated to {content.siteConfig.recipientName}</span>
-        <Heart className="w-3 h-3 text-[#E8B4C8] fill-[#E8B4C8]" />
+        <Sparkles className="w-4 h-4 text-[#FFE3A8] animate-pulse" />
+        <span className="tracking-wide">A Private Universe for <strong className="font-semibold text-white">{content.siteConfig.recipientName}</strong></span>
+        <Heart className="w-3.5 h-3.5 text-[#F2B8CD] fill-[#F2B8CD]" />
       </motion.div>
 
-      {/* Main Typewriter Heading */}
-      <div className="max-w-3xl mx-auto min-h-[140px] sm:min-h-[180px] flex flex-col items-center justify-center">
-        <h1 className="font-serif-poetry text-3xl sm:text-5xl md:text-6xl text-[#F5F0FF] leading-snug tracking-wide glow-text-subtle font-normal">
-          <span className="block mb-2 sm:mb-3">
+      {/* MAIN TYPEWRITER POETRY DISPLAY */}
+      <div className="relative z-10 max-w-4xl mx-auto min-h-[160px] sm:min-h-[200px] flex flex-col items-center justify-center">
+        <h1 className="font-serif-poetry text-3xl sm:text-5xl md:text-7xl text-[#FAF8FF] leading-snug tracking-wide font-normal">
+          <span className="block mb-3 sm:mb-4 drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]">
             {displayedLine1}
             {!isTypingComplete && displayedLine2.length === 0 && (
-              <span className="inline-block w-1.5 h-7 sm:h-11 bg-[#FFE8A3] ml-1.5 animate-pulse align-middle" />
+              <span className="inline-block w-1.5 h-8 sm:h-14 bg-[#FFE3A8] ml-2 animate-pulse align-middle" />
             )}
           </span>
-          <span className="block text-[#E8B4C8] italic font-light">
+          <span className="block shimmer-text italic font-light">
             {displayedLine2}
             {!isTypingComplete && displayedLine2.length > 0 && (
-              <span className="inline-block w-1.5 h-7 sm:h-11 bg-[#E8B4C8] ml-1.5 animate-pulse align-middle" />
+              <span className="inline-block w-1.5 h-8 sm:h-14 bg-[#F2B8CD] ml-2 animate-pulse align-middle" />
             )}
           </span>
         </h1>
       </div>
 
-      {/* Gentle Subtitle */}
+      {/* HANDWRITTEN CURSIVE ACCENT */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: isTypingComplete ? 1 : 0, y: 0 }}
+        transition={{ duration: 1, delay: 0.2 }}
+        className="relative z-10 mt-4 text-[#F2B8CD] font-cursive text-2xl sm:text-3xl"
+      >
+        ~ where silence is gentle and words feel safe ~
+      </motion.div>
+
+      {/* SUBTITLE */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: isTypingComplete ? 1 : 0 }}
-        transition={{ duration: 1 }}
-        className="mt-6 max-w-md mx-auto text-sm sm:text-base text-[#B8A9CD]/80 font-light leading-relaxed"
+        transition={{ duration: 1, delay: 0.4 }}
+        className="relative z-10 mt-5 max-w-lg mx-auto text-sm sm:text-base text-[#C8B6E2]/85 font-light leading-relaxed px-4"
       >
         {subtext}
       </motion.p>
 
-      {/* Call to Action Glowing Button */}
+      {/* CALL TO ACTION GLOWING BUTTON */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
+        initial={{ opacity: 0, scale: 0.92 }}
         animate={{ opacity: isTypingComplete ? 1 : 0.8, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
-        className="mt-10 sm:mt-12"
+        transition={{ duration: 0.8, delay: 0.5 }}
+        className="relative z-10 mt-10 sm:mt-12"
       >
         <button
           onClick={handleButtonClick}
-          className="relative group px-8 py-4 sm:px-10 sm:py-4 rounded-full font-serif-poetry text-lg sm:text-xl text-[#F5F0FF] tracking-wide transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0"
+          className="relative group px-9 py-4 sm:px-12 sm:py-4.5 rounded-full font-serif-poetry text-lg sm:text-2xl text-[#FAF8FF] tracking-wide transition-all duration-400 transform hover:-translate-y-1.5 active:translate-y-0 cursor-pointer"
           style={{
-            background: 'linear-gradient(135deg, rgba(184, 169, 205, 0.25) 0%, rgba(232, 180, 200, 0.35) 100%)',
-            border: '1px solid rgba(232, 180, 200, 0.5)',
-            boxShadow: '0 8px 32px 0 rgba(232, 180, 200, 0.2), inset 0 0 16px rgba(255, 232, 163, 0.2)',
+            background: 'linear-gradient(135deg, rgba(35, 29, 58, 0.9) 0%, rgba(55, 38, 68, 0.9) 100%)',
+            border: '1.5px solid rgba(255, 227, 168, 0.55)',
+            boxShadow: '0 12px 40px rgba(0, 0, 0, 0.7), 0 0 35px rgba(242, 184, 205, 0.25), inset 0 0 20px rgba(255, 227, 168, 0.2)',
           }}
         >
-          {/* Subtle outer breathing glow */}
-          <span className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#B8A9CD] via-[#E8B4C8] to-[#FFE8A3] opacity-30 group-hover:opacity-70 blur-md transition duration-500" />
+          {/* Shimmering Outer Border Aura */}
+          <span className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#C8B6E2] via-[#F2B8CD] to-[#FFE3A8] opacity-40 group-hover:opacity-90 blur-lg transition duration-500" />
 
-          <span className="relative flex items-center justify-center gap-2.5">
-            <Heart className="w-5 h-5 text-[#E8B4C8] fill-[#E8B4C8]/40 group-hover:fill-[#E8B4C8] transition-colors" />
-            <span>{buttonText}</span>
-            <Sparkles className="w-4 h-4 text-[#FFE8A3] animate-pulse" />
+          <span className="relative flex items-center justify-center gap-3">
+            <Heart className="w-5 h-5 text-[#F2B8CD] fill-[#F2B8CD]/40 group-hover:fill-[#F2B8CD] group-hover:scale-110 transition-all duration-300" />
+            <span className="group-hover:text-[#FFE3A8] transition-colors">{buttonText}</span>
+            <Sparkles className="w-5 h-5 text-[#FFE3A8] animate-pulse" />
           </span>
         </button>
       </motion.div>
 
-      {/* Scroll Down Hint */}
+      {/* SCROLL DOWN HINT */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: [0.3, 0.8, 0.3] }}
-        transition={{ repeat: Infinity, duration: 3, delay: 1 }}
-        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 cursor-pointer"
+        animate={{ opacity: [0.3, 0.85, 0.3] }}
+        transition={{ repeat: Infinity, duration: 3.5, delay: 1 }}
+        className="relative z-10 mt-16 sm:mt-20 flex flex-col items-center gap-1.5 cursor-pointer"
         onClick={onExplore}
       >
-        <span className="text-[11px] uppercase tracking-widest text-[#B8A9CD]/60 font-light">Scroll softly</span>
-        <ChevronDown className="w-4 h-4 text-[#B8A9CD]/60" />
+        <span className="text-[11px] uppercase tracking-widest text-[#C8B6E2]/70 font-light flex items-center gap-1">
+          <Compass className="w-3 h-3 text-[#FFE3A8]" />
+          Wander through the verses
+        </span>
+        <ChevronDown className="w-4 h-4 text-[#C8B6E2]/70 animate-bounce" />
       </motion.div>
     </section>
   );

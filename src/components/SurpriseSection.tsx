@@ -16,19 +16,19 @@ export const SurpriseSection: React.FC = () => {
       id: 'envelope' as SurpriseTab,
       label: "Open When You're Sad",
       icon: Mail,
-      accent: '#E8B4C8',
+      accent: '#F2B8CD',
     },
     {
       id: 'stars' as SurpriseTab,
       label: 'Catch a Star',
       icon: Sparkles,
-      accent: '#FFE8A3',
+      accent: '#FFE3A8',
     },
     {
       id: 'memories' as SurpriseTab,
       label: 'Memory Wall',
       icon: ImageIcon,
-      accent: '#B8A9CD',
+      accent: '#C8B6E2',
     },
   ];
 
@@ -38,25 +38,25 @@ export const SurpriseSection: React.FC = () => {
   };
 
   return (
-    <section id="surprises" className="relative py-20 px-4 sm:px-6 max-w-6xl mx-auto">
+    <section id="surprises" className="relative py-28 px-4 sm:px-6 max-w-6xl mx-auto">
       {/* Chapter 2 Header */}
-      <div className="text-center max-w-2xl mx-auto mb-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8B4C8]/10 text-xs tracking-wider uppercase text-[#E8B4C8] mb-4 border border-[#E8B4C8]/20">
-          <Heart className="w-3.5 h-3.5 fill-[#E8B4C8]/30" />
-          <span>Chapter II • Surprises</span>
+      <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F2B8CD]/10 text-xs tracking-widest uppercase text-[#FFE3A8] mb-4 border border-[#FFE3A8]/25 shadow-[0_0_15px_rgba(255,227,168,0.12)]">
+          <Heart className="w-3.5 h-3.5 fill-[#F2B8CD]/30 text-[#F2B8CD]" />
+          <span>Chapter II • Celestial Surprises</span>
         </div>
 
-        <h2 className="font-serif-poetry text-3xl sm:text-4xl md:text-5xl text-[#F5F0FF] mb-3 font-normal glow-text-subtle">
-          A Little Corner of Surprises
+        <h2 className="font-serif-poetry text-4xl sm:text-5xl md:text-6xl text-[#FAF8FF] mb-3 font-normal glow-text-subtle">
+          A Sanctuary of Surprises
         </h2>
 
-        <p className="text-sm sm:text-base text-[#B8A9CD]/80 font-light leading-relaxed">
+        <p className="text-sm sm:text-base text-[#C8B6E2]/85 font-light leading-relaxed">
           Quiet interactive gifts tucked away in the constellation, waiting for your touch.
         </p>
       </div>
 
       {/* Interactive Tabs Navigation */}
-      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
+      <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 mb-14">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
           const IconComp = tab.icon;
@@ -65,18 +65,18 @@ export const SurpriseSection: React.FC = () => {
             <button
               key={tab.id}
               onClick={() => handleTabChange(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+              className={`flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer ${
                 isActive
-                  ? 'glass-panel-glow border-[#E8B4C8]/50 text-[#F5F0FF] shadow-[0_0_20px_rgba(232,180,200,0.25)]'
-                  : 'glass-panel text-[#B8A9CD]/70 hover:text-[#F5F0FF] hover:border-[#B8A9CD]/30'
+                  ? 'glass-panel-gold border-[#FFE3A8]/60 text-[#FAF8FF] shadow-[0_0_25px_rgba(255,227,168,0.3)]'
+                  : 'glass-panel text-[#C8B6E2]/70 hover:text-[#FAF8FF] hover:border-[#FFE3A8]/30'
               }`}
             >
               <IconComp
                 className={`w-4 h-4 transition-colors ${
-                  isActive ? 'text-[#FFE8A3]' : 'text-[#B8A9CD]'
+                  isActive ? 'text-[#FFE3A8]' : 'text-[#C8B6E2]'
                 }`}
               />
-              <span>{tab.label}</span>
+              <span className={isActive ? 'text-[#FFE3A8] font-semibold' : ''}>{tab.label}</span>
             </button>
           );
         })}

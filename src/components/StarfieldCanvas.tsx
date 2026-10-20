@@ -10,6 +10,8 @@ interface Star {
   vy: number;
   vx: number;
   color: string;
+  originalVx: number;
+  originalVy: number;
 }
 
 interface ShootingStar {
@@ -21,6 +23,7 @@ interface ShootingStar {
   opacity: number;
   life: number;
   maxLife: number;
+  color: string;
 }
 
 export const StarfieldCanvas: React.FC = () => {
@@ -37,32 +40,55 @@ export const StarfieldCanvas: React.FC = () => {
     let height = (canvas.height = window.innerHeight);
 
     const isMobile = width < 768;
-    const starCount = isMobile ? 55 : 140;
+    const starCount = isMobile ? 65 : 160;
 
     // Check user preference for reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    // Curated celestial color spectrum
     const colors = [
-      '#F5F0FF', // Soft White
-      '#B8A9CD', // Lavender
-      '#E8B4C8', // Muted Pink
-      '#FFE8A3', // Starlight Gold
+      '#FAF8FF', // Moonlit Diamond
+      '#C8B6E2', // Celestial Lavender
+      '#F2B8CD', // Rose Gold Shimmer
+      '#FFE3A8', // Warm Starlight
+      '#E8A2B8', // Muted Blush
     ];
 
-    const stars: Star[] = Array.from({ length: starCount }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      size: Math.random() * 1.8 + 0.6,
-      alpha: Math.random() * 0.7 + 0.2,
-      alphaTarget: Math.random() * 0.8 + 0.2,
-      twinkleSpeed: (Math.random() * 0.02 + 0.005) * (prefersReducedMotion ? 0.3 : 1),
-      vy: prefersReducedMotion ? 0 : (Math.random() * -0.15 - 0.03),
-      vx: prefersReducedMotion ? 0 : (Math.random() * 0.06 - 0.03),
-      color: colors[Math.floor(Math.random() * colors.length)],
-    }));
+    const mouse = { x: -1000, y: -1000, radius: 140 };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    };
+
+    const handleMouseLeave = () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    document.addEventListener('mouseleave', handleMouseLeave);
+
+    const stars: Star[] = Array.from({ length: starCount }, () => {
+      const vx = prefersReducedMotion ? 0 : (Math.random() * 0.08 - 0.04);
+      const vy = prefersReducedMotion ? 0 : (Math.random() * -0.16 - 0.04);
+      return {
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: Math.random() * 1.9 + 0.6,
+        alpha: Math.random() * 0.7 + 0.3,
+        alphaTarget: Math.random() * 0.8 + 0.2,
+        twinkleSpeed: (Math.random() * 0.025 + 0.008) * (prefersReducedMotion ? 0.3 : 1),
+        vy,
+        vx,
+        originalVx: vx,
+        originalVy: vy,
+        color: colors[Math.floor(Math.random() * colors.length)],
+      };
+    });
 
     let shootingStars: ShootingStar[] = [];
-    let nextShootingStarTime = Date.now() + 5000 + Math.random() * 8000;
+    let nextShootingStarTime = Date.now() + 4000 + Math.random() * 7000;
 
     const handleResize = () => {
       if (!canvas) return;
@@ -75,14 +101,15 @@ export const StarfieldCanvas: React.FC = () => {
     const spawnShootingStar = () => {
       if (prefersReducedMotion) return;
       shootingStars.push({
-        x: Math.random() * width * 0.8 + width * 0.1,
-        y: Math.random() * (height * 0.4),
-        length: Math.random() * 80 + 50,
-        speed: Math.random() * 5 + 6,
+        x: Math.random() * width * 0.85 + width * 0.05,
+        y: Math.random() * (height * 0.35),
+        length: Math.random() * 110 + 60,
+        speed: Math.random() * 6 + 7,
         angle: Math.PI / 4 + (Math.random() * 0.2 - 0.1),
         opacity: 1,
         life: 0,
-        maxLife: 45,
+        maxLife: 42,
+        color: Math.random() > 0.5 ? '#FFE3A8' : '#F2B8CD',
       });
     };
 
@@ -94,20 +121,54 @@ export const StarfieldCanvas: React.FC = () => {
 
       ctx.clearRect(0, 0, width, height);
 
-      // Render subtle celestial gradient / nebula dust
-      const nebula = ctx.createRadialGradient(
-        width * 0.7,
-        height * 0.3,
-        50,
-        width * 0.7,
-        height * 0.3,
-        width * 0.6
+      // Render layered cosmic aurora glow
+      const aurora1 = ctx.createRadialGradient(
+        width * 0.65,
+        height * 0.25,
+        40,
+        width * 0.65,
+        height * 0.25,
+        width * 0.55
       );
-      nebula.addColorStop(0, 'rgba(184, 169, 205, 0.04)');
-      nebula.addColorStop(0.5, 'rgba(232, 180, 200, 0.025)');
-      nebula.addColorStop(1, 'rgba(11, 11, 20, 0)');
-      ctx.fillStyle = nebula;
+      aurora1.addColorStop(0, 'rgba(155, 134, 189, 0.06)');
+      aurora1.addColorStop(0.5, 'rgba(242, 184, 205, 0.035)');
+      aurora1.addColorStop(1, 'rgba(8, 7, 15, 0)');
+      ctx.fillStyle = aurora1;
       ctx.fillRect(0, 0, width, height);
+
+      const aurora2 = ctx.createRadialGradient(
+        width * 0.25,
+        height * 0.7,
+        30,
+        width * 0.25,
+        height * 0.7,
+        width * 0.5
+      );
+      aurora2.addColorStop(0, 'rgba(255, 227, 168, 0.045)');
+      aurora2.addColorStop(0.6, 'rgba(155, 134, 189, 0.02)');
+      aurora2.addColorStop(1, 'rgba(8, 7, 15, 0)');
+      ctx.fillStyle = aurora2;
+      ctx.fillRect(0, 0, width, height);
+
+      // Draw constellation connections between close stars
+      if (!isMobile) {
+        for (let i = 0; i < stars.length; i++) {
+          for (let j = i + 1; j < stars.length; j++) {
+            const dx = stars[i].x - stars[j].x;
+            const dy = stars[i].y - stars[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 75) {
+              const lineAlpha = (1 - dist / 75) * 0.12 * Math.min(stars[i].alpha, stars[j].alpha);
+              ctx.beginPath();
+              ctx.moveTo(stars[i].x, stars[i].y);
+              ctx.lineTo(stars[j].x, stars[j].y);
+              ctx.strokeStyle = `rgba(200, 182, 226, ${lineAlpha})`;
+              ctx.lineWidth = 0.6;
+              ctx.stroke();
+            }
+          }
+        }
+      }
 
       // Render Stars
       for (let i = 0; i < stars.length; i++) {
@@ -115,12 +176,28 @@ export const StarfieldCanvas: React.FC = () => {
 
         // Twinkle logic
         if (Math.abs(s.alpha - s.alphaTarget) < 0.05) {
-          s.alphaTarget = Math.random() * 0.8 + 0.2;
+          s.alphaTarget = Math.random() * 0.8 + 0.25;
         } else {
           s.alpha += (s.alphaTarget - s.alpha) * s.twinkleSpeed;
         }
 
-        // Slow upward drift
+        // Mouse gentle gravitational swirl on desktop
+        if (!isMobile && mouse.x > 0) {
+          const dx = mouse.x - s.x;
+          const dy = mouse.y - s.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < mouse.radius && dist > 1) {
+            const force = (1 - dist / mouse.radius) * 0.6;
+            s.vx += (dx / dist) * force * 0.35;
+            s.vy += (dy / dist) * force * 0.35;
+          } else {
+            // Decay back to original velocity
+            s.vx += (s.originalVx - s.vx) * 0.03;
+            s.vy += (s.originalVy - s.vy) * 0.03;
+          }
+        }
+
+        // Drift
         s.y += s.vy * 60 * delta;
         s.x += s.vx * 60 * delta;
 
@@ -135,8 +212,21 @@ export const StarfieldCanvas: React.FC = () => {
         ctx.fillStyle = s.color;
         ctx.globalAlpha = s.alpha;
         ctx.shadowColor = s.color;
-        ctx.shadowBlur = s.size > 1.4 ? 6 : 2;
+        ctx.shadowBlur = s.size > 1.3 ? 7 : 2;
         ctx.fill();
+
+        // 4-point shimmer cross for bright stars
+        if (s.size > 1.6 && s.alpha > 0.6) {
+          ctx.beginPath();
+          ctx.moveTo(s.x - s.size * 2, s.y);
+          ctx.lineTo(s.x + s.size * 2, s.y);
+          ctx.moveTo(s.x, s.y - s.size * 2);
+          ctx.lineTo(s.x, s.y + s.size * 2);
+          ctx.strokeStyle = s.color;
+          ctx.lineWidth = 0.5;
+          ctx.globalAlpha = s.alpha * 0.5;
+          ctx.stroke();
+        }
       }
 
       ctx.shadowBlur = 0;
@@ -144,7 +234,7 @@ export const StarfieldCanvas: React.FC = () => {
       // Shooting stars
       if (!prefersReducedMotion && Date.now() > nextShootingStarTime) {
         spawnShootingStar();
-        nextShootingStarTime = Date.now() + 12000 + Math.random() * 14000;
+        nextShootingStarTime = Date.now() + 9000 + Math.random() * 12000;
       }
 
       for (let j = shootingStars.length - 1; j >= 0; j--) {
@@ -163,22 +253,26 @@ export const StarfieldCanvas: React.FC = () => {
         const tailY = ss.y - Math.sin(ss.angle) * ss.length;
 
         const grad = ctx.createLinearGradient(ss.x, ss.y, tailX, tailY);
-        grad.addColorStop(0, `rgba(255, 232, 163, ${ss.opacity * 0.9})`);
-        grad.addColorStop(0.3, `rgba(232, 180, 200, ${ss.opacity * 0.6})`);
-        grad.addColorStop(1, 'rgba(184, 169, 205, 0)');
+        grad.addColorStop(0, `${ss.color}`);
+        grad.addColorStop(0.3, `rgba(242, 184, 205, ${ss.opacity * 0.6})`);
+        grad.addColorStop(1, 'rgba(200, 182, 226, 0)');
 
         ctx.beginPath();
         ctx.moveTo(ss.x, ss.y);
         ctx.lineTo(tailX, tailY);
         ctx.strokeStyle = grad;
-        ctx.lineWidth = 1.5;
+        ctx.lineWidth = 1.8;
+        ctx.globalAlpha = ss.opacity;
         ctx.stroke();
 
-        // Bright tip
+        // Glowing Core
         ctx.beginPath();
-        ctx.arc(ss.x, ss.y, 1.8, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${ss.opacity})`;
+        ctx.arc(ss.x, ss.y, 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.shadowColor = ss.color;
+        ctx.shadowBlur = 10;
         ctx.fill();
+        ctx.shadowBlur = 0;
       }
 
       ctx.globalAlpha = 1;
@@ -190,6 +284,8 @@ export const StarfieldCanvas: React.FC = () => {
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, []);
 
