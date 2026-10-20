@@ -59,11 +59,11 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onRestart }) => {
         {/* Brand / Title */}
         <button
           onClick={() => scrollTo('hero')}
-          className="group flex items-center gap-2.5 px-4 py-2 rounded-full glass-panel-gold hover:border-[#F2B8CD]/60 transition-all text-left shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-pointer"
+          className="group flex items-center gap-2.5 px-4.5 py-2 rounded-full glass-panel-gold hover:border-[#C74A76]/60 transition-all text-left shadow-[0_4px_20px_rgba(184,82,120,0.12)] cursor-pointer"
           title="Return to beginning"
         >
-          <span className="w-2.5 h-2.5 rounded-full bg-[#FFE3A8] shadow-[0_0_10px_#FFE3A8] animate-pulse" />
-          <span className="font-serif-poetry text-base sm:text-xl text-[#FAF8FF] group-hover:text-[#FFE3A8] transition-colors">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#B37B24] shadow-[0_0_8px_#B37B24] animate-pulse" />
+          <span className="font-serif-poetry text-base sm:text-xl text-[#341829] group-hover:text-[#C74A76] transition-colors font-medium">
             {content.siteConfig.title}
           </span>
         </button>
@@ -74,7 +74,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onRestart }) => {
           <nav
             aria-label="Section navigation"
             className={`hidden md:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full glass-panel transition-all ${
-              scrolled ? 'opacity-100 shadow-[0_4px_25px_rgba(0,0,0,0.6)]' : 'opacity-85 hover:opacity-100'
+              scrolled ? 'opacity-100 shadow-[0_4px_25px_rgba(184,82,120,0.15)]' : 'opacity-90 hover:opacity-100'
             }`}
           >
             {[
@@ -89,8 +89,8 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onRestart }) => {
                 onClick={() => scrollTo(item.id)}
                 className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all cursor-pointer ${
                   activeSection === item.id
-                    ? 'bg-[#FFE3A8]/20 text-[#FFE3A8] border border-[#FFE3A8]/40 shadow-[0_0_15px_rgba(255,227,168,0.25)]'
-                    : 'text-[#C8B6E2]/80 hover:text-[#FAF8FF] hover:bg-white/5'
+                    ? 'bg-[#FFE5EC] text-[#9E2B54] border border-[#F5B8CB] shadow-sm font-semibold'
+                    : 'text-[#664658] hover:text-[#341829] hover:bg-white/60'
                 }`}
               >
                 {item.label}
@@ -103,23 +103,23 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onRestart }) => {
             onClick={handleToggleMusic}
             aria-label={isPlayingMusic ? 'Mute ambient piano music' : 'Play ambient piano music'}
             aria-pressed={isPlayingMusic}
-            className={`flex items-center gap-2 px-3.5 py-1.5 sm:px-4.5 sm:py-2 rounded-full glass-panel-gold transition-all duration-300 cursor-pointer ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 sm:px-4.5 sm:py-2 rounded-full glass-panel-gold transition-all duration-300 cursor-pointer shadow-[0_2px_15px_rgba(184,82,120,0.1)] ${
               isPlayingMusic
-                ? 'border-[#FFE3A8]/60 shadow-[0_0_25px_rgba(255,227,168,0.35)] text-[#FFE3A8]'
-                : 'text-[#C8B6E2] hover:text-[#FAF8FF] hover:border-[#FFE3A8]/40'
+                ? 'border-[#B37B24] text-[#B37B24] bg-[#FFF9EC]'
+                : 'text-[#664658] hover:text-[#341829] hover:border-[#C74A76]/50'
             }`}
             title={isPlayingMusic ? 'Pause ambient piano music' : 'Play relaxing ambient piano music (Gentle & Calming)'}
           >
             {isPlayingMusic ? (
               <>
-                <Volume2 className="w-4 h-4 animate-pulse text-[#FFE3A8]" />
+                <Volume2 className="w-4 h-4 animate-pulse text-[#B37B24]" />
                 {/* Visual soundwave bars */}
                 <div className="flex items-end gap-[2px] h-3.5">
-                  <span className="w-[2px] h-2 bg-[#FFE3A8] animate-bounce" style={{ animationDelay: '0ms' }} />
-                  <span className="w-[2px] h-3.5 bg-[#FFE3A8] animate-bounce" style={{ animationDelay: '150ms' }} />
-                  <span className="w-[2px] h-2 bg-[#FFE3A8] animate-bounce" style={{ animationDelay: '300ms' }} />
+                  <span className="w-[2px] h-2 bg-[#B37B24] animate-bounce" style={{ animationDelay: '0ms' }} />
+                  <span className="w-[2px] h-3.5 bg-[#B37B24] animate-bounce" style={{ animationDelay: '150ms' }} />
+                  <span className="w-[2px] h-2 bg-[#B37B24] animate-bounce" style={{ animationDelay: '300ms' }} />
                 </div>
-                <span className="hidden sm:inline text-xs font-medium tracking-wide">Piano On</span>
+                <span className="hidden sm:inline text-xs font-semibold tracking-wide">Piano On</span>
               </>
             ) : (
               <>

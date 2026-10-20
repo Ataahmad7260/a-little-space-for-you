@@ -20,7 +20,7 @@ export const InteractiveHeartsOverlay: React.FC<{ children: React.ReactNode }> =
 
     // Small chance or on special clicks
     const id = Date.now() + Math.random();
-    const colors = ['#E8B4C8', '#B8A9CD', '#FFE8A3', '#F5F0FF'];
+    const colors = ['#C74A76', '#E06B92', '#F5B8CB', '#B37B24', '#A03159'];
     const newHeart: FloatingHeart = {
       id,
       x: e.clientX,

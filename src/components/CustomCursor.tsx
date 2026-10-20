@@ -74,7 +74,7 @@ export const CustomCursor: React.FC = () => {
     <>
       {/* Outer ambient starlight glow ring */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-50 rounded-full mix-blend-screen"
+        className="fixed top-0 left-0 pointer-events-none z-50 rounded-full"
         style={{
           x: smoothX,
           y: smoothY,
@@ -82,9 +82,9 @@ export const CustomCursor: React.FC = () => {
           translateY: '-50%',
           width: isHovered ? 52 : isClicking ? 26 : 36,
           height: isHovered ? 52 : isClicking ? 26 : 36,
-          border: isHovered ? '1.5px solid rgba(255, 227, 168, 0.85)' : '1px solid rgba(242, 184, 205, 0.45)',
-          backgroundColor: isHovered ? 'rgba(255, 227, 168, 0.12)' : 'rgba(200, 182, 226, 0.05)',
-          boxShadow: isHovered ? '0 0 25px rgba(255, 227, 168, 0.5)' : '0 0 15px rgba(200, 182, 226, 0.25)',
+          border: isHovered ? '1.5px solid rgba(199, 74, 118, 0.85)' : '1px solid rgba(199, 74, 118, 0.4)',
+          backgroundColor: isHovered ? 'rgba(255, 229, 236, 0.45)' : 'rgba(255, 240, 245, 0.25)',
+          boxShadow: isHovered ? '0 0 20px rgba(199, 74, 118, 0.35)' : '0 0 10px rgba(199, 74, 118, 0.15)',
           transition: 'width 0.2s ease-out, height 0.2s ease-out, border 0.2s, background-color 0.2s',
         }}
       />
@@ -99,8 +99,8 @@ export const CustomCursor: React.FC = () => {
           translateY: '-50%',
           width: isHovered ? 8 : isClicking ? 10 : 5,
           height: isHovered ? 8 : isClicking ? 10 : 5,
-          backgroundColor: isHovered ? '#FFE3A8' : '#FAF8FF',
-          boxShadow: '0 0 10px #FFE3A8, 0 0 18px #F2B8CD',
+          backgroundColor: isHovered ? '#B37B24' : '#C74A76',
+          boxShadow: '0 0 8px #C74A76, 0 0 12px #B37B24',
           transition: 'width 0.15s ease-out, height 0.15s ease-out, background-color 0.2s',
         }}
       />

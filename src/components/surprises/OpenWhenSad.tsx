@@ -33,13 +33,13 @@ export const OpenWhenSad: React.FC = () => {
     <div className="relative w-full max-w-2xl mx-auto py-8">
       {/* Title & prompt */}
       <div className="text-center mb-8">
-        <span className="text-xs uppercase tracking-widest text-[#FFE3A8] font-mono mb-2 inline-block">
+        <span className="text-xs uppercase tracking-widest text-[#B37B24] font-mono mb-2 inline-block font-semibold">
           Interactive Surprise 01
         </span>
-        <h3 className="font-serif-poetry text-3xl sm:text-4xl text-[#FAF8FF] mb-2 font-normal">
+        <h3 className="font-serif-poetry text-3xl sm:text-4xl text-[#341829] mb-2 font-normal">
           {title}
         </h3>
-        <p className="font-cursive text-xl sm:text-2xl text-[#F2B8CD]">
+        <p className="font-cursive text-2xl sm:text-3xl text-[#C74A76]">
           {envelopeLabel}
         </p>
       </div>
@@ -56,60 +56,60 @@ export const OpenWhenSad: React.FC = () => {
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ duration: 0.5 }}
               onClick={handleOpen}
-              className="group relative cursor-pointer w-full max-w-md aspect-[16/11] rounded-3xl glass-panel-gold p-6 flex flex-col items-center justify-center border border-[#FFE3A8]/35 hover:border-[#F2B8CD]/70 transition-all duration-400 shadow-[0_20px_55px_rgba(0,0,0,0.7)] hover:shadow-[0_25px_65px_rgba(242,184,205,0.3)]"
+              className="group relative cursor-pointer w-full max-w-md aspect-[16/11] rounded-3xl glass-panel-glow p-6 flex flex-col items-center justify-center border border-[#F5B8CB] hover:border-[#C74A76] transition-all duration-400 shadow-[0_20px_50px_rgba(184,82,120,0.18)] hover:shadow-[0_25px_60px_rgba(199,74,118,0.28)]"
             >
               {/* Outer Ambient Glow */}
-              <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-r from-[#9B86BD]/25 via-[#F2B8CD]/30 to-[#FFE3A8]/25 opacity-0 group-hover:opacity-100 blur-xl transition duration-500 pointer-events-none" />
+              <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-r from-[#FAD2E1] via-[#FFE4EC] to-[#F7E3B5] opacity-0 group-hover:opacity-75 blur-xl transition duration-500 pointer-events-none" />
 
               {/* Envelope Triangular Flap Contour */}
               <div className="absolute top-0 left-0 right-0 h-1/2 overflow-hidden pointer-events-none rounded-t-3xl">
-                <div className="w-full h-full border-b border-[#FFE3A8]/25 [clip-path:polygon(0%_0%,100%_0%,50%_100%)] bg-gradient-to-b from-white/10 to-transparent" />
+                <div className="w-full h-full border-b border-[#F5B8CB] [clip-path:polygon(0%_0%,100%_0%,50%_100%)] bg-gradient-to-b from-[#FFF5F8] to-transparent" />
               </div>
 
-              {/* Golden Silk Ribbon Accent (Horizontal bar) */}
-              <div className="absolute top-1/2 left-0 right-0 h-6 -translate-y-1/2 bg-gradient-to-r from-transparent via-[#FFE3A8]/15 to-transparent pointer-events-none" />
+              {/* Silk Ribbon Accent */}
+              <div className="absolute top-1/2 left-0 right-0 h-6 -translate-y-1/2 bg-gradient-to-r from-transparent via-[#F5B8CB]/50 to-transparent pointer-events-none" />
 
-              {/* Glowing Wax Seal with Heart Stamp */}
+              {/* Glowing Crimson Wax Seal with Heart Stamp */}
               <motion.div
                 animate={{ scale: [1, 1.06, 1] }}
                 transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
-                className="relative z-10 w-18 h-18 rounded-full bg-gradient-to-tr from-[#E8A2B8] via-[#F2B8CD] to-[#FFE3A8] p-[2px] shadow-[0_0_30px_rgba(242,184,205,0.6)] group-hover:shadow-[0_0_45px_rgba(255,227,168,0.8)] transition-all"
+                className="relative z-10 w-18 h-18 rounded-full bg-gradient-to-tr from-[#A03159] via-[#C74A76] to-[#E8A2B8] p-[2px] shadow-[0_4px_25px_rgba(199,74,118,0.4)] group-hover:shadow-[0_4px_35px_rgba(199,74,118,0.6)] transition-all"
               >
-                <div className="w-full h-full rounded-full bg-[#181427] flex items-center justify-center border border-white/20">
-                  <Heart className="w-8 h-8 text-[#F2B8CD] fill-[#F2B8CD] group-hover:scale-115 transition-transform duration-300" />
+                <div className="w-full h-full rounded-full bg-[#FFF0F4] flex items-center justify-center border border-white/80">
+                  <Heart className="w-8 h-8 text-[#C74A76] fill-[#C74A76] group-hover:scale-115 transition-transform duration-300" />
                 </div>
               </motion.div>
 
-              <p className="relative z-10 mt-6 font-serif-poetry text-2xl text-[#FAF8FF] group-hover:text-[#FFE3A8] transition-colors">
+              <p className="relative z-10 mt-6 font-serif-poetry text-2xl text-[#341829] group-hover:text-[#9E2B54] transition-colors">
                 Touch to break seal
               </p>
 
-              <span className="relative z-10 mt-1 font-cursive text-lg text-[#F2B8CD]/90 flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-[#FFE3A8]" />
-                written for when quiet nights feel heavy
+              <span className="relative z-10 mt-1 font-cursive text-xl text-[#C74A76] flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-[#B37B24]" />
+                written for when quiet afternoons feel heavy
               </span>
             </motion.div>
           ) : (
-            /* OPENED LETTER (SLID OUT ON ILLUMINATED PARCHMENT GLASS) */
+            /* OPENED LETTER ON ILLUMINATED PEARL PARCHMENT */
             <motion.div
               key="opened"
               initial={{ y: 35, opacity: 0, scale: 0.94 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: 25, opacity: 0, scale: 0.94 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-xl glass-panel-glow rounded-3xl p-7 sm:p-11 border border-[#F2B8CD]/50 shadow-[0_25px_70px_rgba(0,0,0,0.85)]"
+              className="relative w-full max-w-xl glass-panel-glow rounded-3xl p-7 sm:p-11 border border-[#C74A76]/50 shadow-[0_25px_60px_rgba(184,82,120,0.2)]"
             >
               {/* Top Header */}
-              <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+              <div className="flex items-center justify-between pb-4 border-b border-[#F5B8CB]/60 mb-6">
                 <div className="flex items-center gap-2">
-                  <Moon className="w-5 h-5 text-[#FFE3A8]" />
-                  <span className="text-xs uppercase tracking-widest text-[#FFE3A8] font-mono">
-                    A celestial reassurance
+                  <Moon className="w-5 h-5 text-[#B37B24]" />
+                  <span className="text-xs uppercase tracking-widest text-[#B37B24] font-mono font-semibold">
+                    A reassuring whisper
                   </span>
                 </div>
                 <button
                   onClick={handleClose}
-                  className="p-1.5 rounded-full hover:bg-white/10 text-[#C8B6E2] hover:text-[#FAF8FF] transition-colors"
+                  className="p-1.5 rounded-full hover:bg-[#FFE5EC] text-[#8F6A7E] hover:text-[#341829] transition-colors cursor-pointer"
                   title="Fold letter back into envelope"
                 >
                   <RotateCcw className="w-4 h-4" />
@@ -117,14 +117,14 @@ export const OpenWhenSad: React.FC = () => {
               </div>
 
               {/* Poetic Stanzas */}
-              <div className="space-y-4 font-serif-poetry text-2xl sm:text-3xl text-[#FAF8FF] text-center leading-relaxed tracking-wide py-3">
+              <div className="space-y-4 font-serif-poetry text-2xl sm:text-3xl text-[#341829] text-center leading-relaxed tracking-wide py-3">
                 {letter.map((line, idx) => (
                   <motion.p
                     key={idx}
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.15 + idx * 0.15 }}
-                    className="hover:text-[#FFE3A8] transition-colors"
+                    className="hover:text-[#C74A76] transition-colors"
                   >
                     {line}
                   </motion.p>
@@ -132,8 +132,8 @@ export const OpenWhenSad: React.FC = () => {
               </div>
 
               {/* Warm Note */}
-              <div className="mt-8 pt-5 border-t border-white/10 text-center">
-                <p className="font-cursive text-xl sm:text-2xl text-[#F2B8CD] leading-relaxed max-w-md mx-auto">
+              <div className="mt-8 pt-5 border-t border-[#F5B8CB]/60 text-center">
+                <p className="font-cursive text-2xl sm:text-3xl text-[#C74A76] leading-relaxed max-w-md mx-auto">
                   "{note}"
                 </p>
 
@@ -145,7 +145,7 @@ export const OpenWhenSad: React.FC = () => {
                         sfx.playSoftTap();
                         setShowBreathing(true);
                       }}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-medium bg-white/5 hover:bg-white/10 border border-[#FFE3A8]/30 text-[#FFE3A8] transition-all shadow-[0_0_15px_rgba(255,227,168,0.15)] hover:border-[#FFE3A8]"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold bg-[#FFE5EC] hover:bg-[#FCD3E1] border border-[#F5B8CB] text-[#9E2B54] transition-all shadow-sm cursor-pointer"
                     >
                       <Wind className="w-4 h-4" />
                       Take a soothing breath with the Moon
@@ -167,16 +167,16 @@ export const OpenWhenSad: React.FC = () => {
                           times: [0, 0.45, 0.55, 1],
                           ease: 'easeInOut',
                         }}
-                        className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#9B86BD]/40 via-[#F2B8CD]/40 to-[#FFE3A8]/50 border border-[#FFE3A8]/60 flex items-center justify-center shadow-[0_0_40px_rgba(255,227,168,0.4)] mb-3"
+                        className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#FFE5EC] via-[#FAD2E1] to-[#FFF4D0] border border-[#F5B8CB] flex items-center justify-center shadow-[0_4px_30px_rgba(199,74,118,0.25)] mb-3"
                       >
-                        <Moon className="w-10 h-10 text-[#FAF8FF] fill-[#FFE3A8]/20" />
+                        <Moon className="w-10 h-10 text-[#C74A76] fill-[#C74A76]/20" />
                       </motion.div>
                       <motion.span
                         animate={{
                           opacity: [0.7, 1, 1, 0.7],
                         }}
                         transition={{ repeat: Infinity, duration: 8 }}
-                        className="text-xs font-mono text-[#FFE3A8] tracking-wider"
+                        className="text-xs font-mono text-[#8F5E16] tracking-wider font-semibold"
                       >
                         Breathe in peace... hold gently... exhale the storm.
                       </motion.span>
