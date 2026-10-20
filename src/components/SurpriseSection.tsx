@@ -16,19 +16,19 @@ export const SurpriseSection: React.FC = () => {
       id: 'envelope' as SurpriseTab,
       label: "Open When You're Sad",
       icon: Mail,
-      accent: '#C74A76',
+      accent: '#F2B8CD',
     },
     {
       id: 'stars' as SurpriseTab,
       label: 'Catch a Star',
       icon: Sparkles,
-      accent: '#B37B24',
+      accent: '#FFE3A8',
     },
     {
       id: 'memories' as SurpriseTab,
       label: 'Memory Wall',
       icon: ImageIcon,
-      accent: '#9E2B54',
+      accent: '#C8B6E2',
     },
   ];
 
@@ -41,16 +41,16 @@ export const SurpriseSection: React.FC = () => {
     <section id="surprises" className="relative py-28 px-4 sm:px-6 max-w-6xl mx-auto">
       {/* Chapter 2 Header */}
       <div className="text-center max-w-2xl mx-auto mb-12">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFE5EC] text-xs tracking-widest uppercase text-[#9E2B54] mb-4 border border-[#F5B8CB] shadow-[0_2px_15px_rgba(199,74,118,0.12)] font-medium">
-          <Heart className="w-3.5 h-3.5 fill-[#C74A76] text-[#C74A76]" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F2B8CD]/10 text-xs tracking-widest uppercase text-[#FFE3A8] mb-4 border border-[#FFE3A8]/25 shadow-[0_0_15px_rgba(255,227,168,0.12)]">
+          <Heart className="w-3.5 h-3.5 fill-[#F2B8CD]/30 text-[#F2B8CD]" />
           <span>Chapter II • Celestial Surprises</span>
         </div>
 
-        <h2 className="font-serif-poetry text-4xl sm:text-5xl md:text-6xl text-[#341829] mb-3 font-normal glow-text-subtle">
+        <h2 className="font-serif-poetry text-4xl sm:text-5xl md:text-6xl text-[#FAF8FF] mb-3 font-normal glow-text-subtle">
           A Sanctuary of Surprises
         </h2>
 
-        <p className="text-sm sm:text-base text-[#664658] font-light leading-relaxed">
+        <p className="text-sm sm:text-base text-[#C8B6E2]/85 font-light leading-relaxed">
           Quiet interactive gifts tucked away in the constellation, waiting for your touch.
         </p>
       </div>
@@ -65,18 +65,18 @@ export const SurpriseSection: React.FC = () => {
             <button
               key={tab.id}
               onClick={() => handleTabChange(tab.id)}
-              className={`flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer shadow-sm ${
+              className={`flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer ${
                 isActive
-                  ? 'glass-panel-glow border-[#C74A76] text-[#9E2B54] shadow-[0_4px_25px_rgba(199,74,118,0.22)]'
-                  : 'glass-panel text-[#664658] hover:text-[#341829] hover:border-[#C74A76]/40'
+                  ? 'glass-panel-gold border-[#FFE3A8]/60 text-[#FAF8FF] shadow-[0_0_25px_rgba(255,227,168,0.3)]'
+                  : 'glass-panel text-[#C8B6E2]/70 hover:text-[#FAF8FF] hover:border-[#FFE3A8]/30'
               }`}
             >
               <IconComp
                 className={`w-4 h-4 transition-colors ${
-                  isActive ? 'text-[#C74A76]' : 'text-[#8F6A7E]'
+                  isActive ? 'text-[#FFE3A8]' : 'text-[#C8B6E2]'
                 }`}
               />
-              <span className={isActive ? 'text-[#9E2B54] font-semibold' : ''}>{tab.label}</span>
+              <span className={isActive ? 'text-[#FFE3A8] font-semibold' : ''}>{tab.label}</span>
             </button>
           );
         })}

@@ -7,8 +7,8 @@ export const triggerCelestialBurst = (x: number = 0.5, y: number = 0.5) => {
     return;
   }
 
-  // Soft romantic aesthetic colors: Rose Quartz, Soft Blush, Warm Amber, Cream
-  const colors = ['#C74A76', '#F5B8CB', '#B37B24', '#FFE4EC', '#A03159'];
+  // Soft romantic colors: Lavender, Muted Pink, Starlight Gold, Soft White
+  const colors = ['#B8A9CD', '#E8B4C8', '#FFE8A3', '#F5F0FF', '#D8C5E8'];
 
   // Gentle star burst
   confetti({
@@ -41,7 +41,7 @@ export const triggerHeartShower = () => {
       angle: 60,
       spread: 55,
       origin: { x: 0, y: 0.7 },
-      colors: ['#C74A76', '#F5B8CB', '#B37B24'],
+      colors: ['#E8B4C8', '#B8A9CD', '#FFE8A3'],
       shapes: ['circle'],
       scalar: 1.1,
       gravity: 0.5,
@@ -51,7 +51,7 @@ export const triggerHeartShower = () => {
       angle: 120,
       spread: 55,
       origin: { x: 1, y: 0.7 },
-      colors: ['#E06B92', '#FAD2E1', '#F7E3B5'],
+      colors: ['#E8B4C8', '#B8A9CD', '#F5F0FF'],
       shapes: ['circle'],
       scalar: 1.1,
       gravity: 0.5,

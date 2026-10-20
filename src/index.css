@@ -2,58 +2,57 @@
 
 @layer base {
   :root {
-    --bg-pink: #FDF2F4;
-    --bg-pink-subtle: #FFF7F9;
-    --bg-pink-card: rgba(255, 255, 255, 0.85);
-    --text-primary: #341829;
-    --text-secondary: #664658;
-    --text-muted: #8F6A7E;
-    --rose-accent: #C74A76;
-    --rose-deep: #9E2B54;
-    --rose-soft: #F5B8CB;
-    --rose-blush: #FFE5EC;
-    --warm-gold: #B37B24;
-    --warm-gold-soft: #F7E3B5;
-    --lavender-soft: #EFE4F5;
-    --glow-rose: rgba(199, 74, 118, 0.18);
-    --glow-gold: rgba(179, 123, 36, 0.18);
+    --bg-night: #08070F;
+    --bg-night-card: #0E0D1B;
+    --lavender: #C8B6E2;
+    --lavender-deep: #9B86BD;
+    --soft-white: #FAF8FF;
+    --muted-pink: #F2B8CD;
+    --rose-gold: #E8A2B8;
+    --starlight: #FFE3A8;
+    --starlight-glow: #FFF4D0;
+    --cosmic-cyan: #A5D7E8;
+    --glow-lavender: rgba(200, 182, 226, 0.28);
+    --glow-pink: rgba(242, 184, 205, 0.28);
+    --glow-starlight: rgba(255, 227, 168, 0.35);
   }
 
   html {
     scroll-behavior: smooth;
-    background-color: #FDF2F4;
-    color: #341829;
+    background-color: #08070F;
+    color: #FAF8FF;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
   }
 
   body {
-    background-color: #FDF2F4;
-    color: #341829;
+    background-color: #08070F;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     min-height: 100vh;
+    selection-background-color: #C8B6E2;
+    selection-color: #08070F;
   }
 
   ::selection {
-    background-color: #F7C6D5;
-    color: #2F1223;
+    background-color: rgba(200, 182, 226, 0.35);
+    color: #FFE3A8;
   }
 
-  /* Custom aesthetic light pink luxury scrollbar */
+  /* Custom celestial luxury scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #FDF2F4;
+    background: #08070F;
   }
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #F5B8CB 0%, #E098B2 50%, #E8B48A 100%);
+    background: linear-gradient(180deg, rgba(200, 182, 226, 0.3) 0%, rgba(242, 184, 205, 0.4) 50%, rgba(255, 227, 168, 0.3) 100%);
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #C74A76 0%, #A03159 100%);
+    background: linear-gradient(180deg, rgba(200, 182, 226, 0.6) 0%, rgba(242, 184, 205, 0.8) 50%, rgba(255, 227, 168, 0.6) 100%);
   }
 }
 
@@ -70,54 +69,53 @@
   font-family: 'Great Vibes', cursive;
 }
 
-/* Glassmorphism Luxury Styles for Aesthetic Light Pink */
+/* Glassmorphism Luxury Styles */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.72);
+  background: radial-gradient(120% 120% at 50% 0%, rgba(26, 24, 46, 0.65) 0%, rgba(13, 12, 24, 0.82) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(232, 175, 196, 0.45);
-  box-shadow: 0 16px 45px -8px rgba(168, 86, 120, 0.12), 0 0 20px rgba(255, 255, 255, 0.8) inset;
+  border: 1px solid rgba(200, 182, 226, 0.16);
+  box-shadow: 0 16px 45px -8px rgba(0, 0, 0, 0.75), 0 0 25px -2px rgba(200, 182, 226, 0.08);
 }
 
 .glass-panel-glow {
-  background: rgba(255, 248, 250, 0.88);
+  background: radial-gradient(140% 140% at 50% 0%, rgba(35, 30, 58, 0.78) 0%, rgba(16, 14, 30, 0.9) 100%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1.5px solid rgba(224, 138, 168, 0.65);
-  box-shadow: 0 20px 50px -5px rgba(184, 82, 120, 0.18), 0 0 35px rgba(245, 184, 203, 0.4);
+  border: 1px solid rgba(242, 184, 205, 0.3);
+  box-shadow: 0 20px 50px -5px rgba(0, 0, 0, 0.8), 0 0 35px 0 rgba(242, 184, 205, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .glass-panel-gold {
-  background: rgba(255, 252, 248, 0.85);
+  background: radial-gradient(120% 120% at 50% 0%, rgba(38, 30, 48, 0.75) 0%, rgba(15, 12, 24, 0.9) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1.5px solid rgba(204, 150, 88, 0.5);
-  box-shadow: 0 18px 45px -5px rgba(168, 92, 120, 0.14), 0 0 30px rgba(247, 227, 181, 0.35);
+  border: 1px solid rgba(255, 227, 168, 0.35);
+  box-shadow: 0 18px 45px -5px rgba(0, 0, 0, 0.8), 0 0 30px 0 rgba(255, 227, 168, 0.16);
 }
 
-/* Glow Typography & Shimmers for Light Pink Theme */
+/* Glow Typography & Shimmers */
 .glow-text-subtle {
-  text-shadow: 0 2px 20px rgba(199, 74, 118, 0.2), 0 0 40px rgba(255, 229, 236, 0.5);
+  text-shadow: 0 0 25px rgba(200, 182, 226, 0.45), 0 0 50px rgba(242, 184, 205, 0.25);
 }
 
 .glow-text-gold {
-  text-shadow: 0 2px 18px rgba(179, 123, 36, 0.25);
+  text-shadow: 0 0 20px rgba(255, 227, 168, 0.5), 0 0 40px rgba(255, 227, 168, 0.25);
 }
 
 .glow-text-pink {
-  text-shadow: 0 2px 18px rgba(199, 74, 118, 0.3);
+  text-shadow: 0 0 20px rgba(242, 184, 205, 0.6), 0 0 45px rgba(242, 184, 205, 0.3);
 }
 
 .glow-starlight {
-  filter: drop-shadow(0 2px 10px rgba(199, 74, 118, 0.4));
+  filter: drop-shadow(0 0 10px rgba(255, 227, 168, 0.75));
 }
 
-/* Aesthetic Aurora Light Pink Gradient Background Effect */
+/* Subtle Aurora Gradient Background Effect */
 .aurora-bg {
-  background: radial-gradient(circle at 50% -10%, rgba(255, 222, 233, 0.8), transparent 60%),
-              radial-gradient(circle at 10% 40%, rgba(248, 214, 226, 0.6), transparent 50%),
-              radial-gradient(circle at 90% 60%, rgba(254, 239, 215, 0.6), transparent 50%),
-              radial-gradient(circle at 50% 90%, rgba(240, 220, 245, 0.5), transparent 60%);
+  background: radial-gradient(circle at 50% -20%, rgba(155, 134, 189, 0.25), transparent 50%),
+              radial-gradient(circle at 10% 40%, rgba(242, 184, 205, 0.12), transparent 45%),
+              radial-gradient(circle at 90% 60%, rgba(255, 227, 168, 0.12), transparent 45%);
 }
 
 /* Keyframe Animations */
@@ -133,14 +131,14 @@
 
 @keyframes pulseGlow {
   0%, 100% {
-    opacity: 0.55;
+    opacity: 0.4;
     transform: scale(1);
-    filter: drop-shadow(0 4px 20px rgba(214, 114, 150, 0.35));
+    filter: drop-shadow(0 0 20px rgba(242, 184, 205, 0.3));
   }
   50% {
-    opacity: 0.95;
+    opacity: 0.85;
     transform: scale(1.06);
-    filter: drop-shadow(0 6px 35px rgba(214, 114, 150, 0.6));
+    filter: drop-shadow(0 0 45px rgba(242, 184, 205, 0.65));
   }
 }
 
@@ -162,7 +160,7 @@
 }
 
 .shimmer-text {
-  background: linear-gradient(90deg, #341829 0%, #C74A76 35%, #B37B24 55%, #341829 100%);
+  background: linear-gradient(90deg, #FAF8FF 0%, #FFE3A8 40%, #F2B8CD 60%, #FAF8FF 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
